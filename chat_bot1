@@ -1,0 +1,168 @@
+if __name__ == '__main__':
+
+    import sys
+    import time
+    import random
+    import msvcrt
+    import threading
+    import multiprocessing
+
+
+
+    class robot_knows:
+        character_age = "s"  # hur du sagt att du är
+        character_name = "s"  # vad du heter
+
+    last_input = "s"  # vad du skrev sist
+    idle_counter = 0
+    idle_time = 0
+    last_input_save = "s"
+
+    robot_here = True
+    good_greet = False
+
+    # roboten skriver:
+
+    bored_list = ["jag väntar på dig", "jag har tråkigt", "kom igen nu, svara"]
+
+    def program_start ():
+        robot_online = True
+
+    def the_robot_is_typing ():
+        for x in range(1,4):
+            b = "Roboten skriver" + "." * x
+            sys.stdout.write('\r'+ b)
+            time.sleep(0.5) #tid mellan varje punkt
+        sys.stdout.write('\r')
+
+
+
+    def idle_chatroom(idle_counter, last_input_save, last_input,robot_here):
+
+        while idle_counter < 11:
+                time.sleep(0.5)
+                idle_counter = idle_counter + 1
+
+                if last_input != last_input_save:
+                    last_input_save = last_input
+                    idle_counter = 0
+
+                if last_input_save == last_input and idle_counter > 10:
+                    for x in range(2):
+                        the_robot_is_typing()
+                    print(random.choice(bored_list))
+                    idle_counter = 0
+
+
+
+
+
+
+
+    p2 = multiprocessing.Process(target=idle_chatroom, args=(idle_counter, last_input_save, last_input,robot_here))
+
+    p2.start()
+
+if last_input == ("hejdå"):
+    robot_here = False
+    p1.join
+
+for x in range (2):
+    the_robot_is_typing()
+
+print("Jag är en robot. Hej!")
+
+last_input = input("Svar:").lower()
+
+
+
+def the_human_is_typing ():
+    while 1:
+        for x in range(2):
+            please_type = "|" * x
+            sys.stdout.write('\r' + please_type)
+            time.sleep(0.25)  # tid mellan varje punkt
+            sys.stdout.write('\r')
+            if input() == 1:
+                break
+
+hello_list = ["hej", "tja", "yo", "hallå", "tjenixen", "tjena"]
+
+#hälsa på mig
+while(good_greet == False):
+    def check_if_hello_phrase ():
+        for x in hello_list:
+            if x in last_input:
+                return True
+
+    if not check_if_hello_phrase():
+        print("hälsa snällt på mig... annars blir jag en ledsen robot... :'(")
+        for x in range(1):
+            the_robot_is_typing()
+
+        print(":'(")
+        for x in range(2):
+            the_robot_is_typing()
+
+        print("Du får ett till försök...")
+        last_input = input("Svar:").lower()
+
+
+    if check_if_hello_phrase():
+        robot_here = True
+        good_greet = True
+
+
+
+
+
+print("är du pojke? ")
+svar_1 = input("Svar:")
+
+svar_1 = svar_1.lower()
+
+valid = {"yes": True, "y": True, "ye": True, "ja": True,
+         "no": False, "n": False, "vet ej": "hen"}
+
+if valid[svar_1]:
+    pronome = "han"
+    pronomes = "kille"
+if valid[svar_1] == False:
+    pronome = "hon"
+    pronomes = "tjej"
+if valid[svar_1] == "hen":
+    pronome = "hen"
+    pronomes = "sak"
+
+character_name = (input("Vad heter du? "))
+for x in range(4):
+    the_robot_is_typing()
+print("oj..." + character_name + " är verkligen inte ett modernt namn... du måste vara gammal?")
+for x in range(2):
+    the_robot_is_typing()
+character_age = int(input("Hur gammal är du? "))
+
+if character_age < 10:
+    character_age_approx = "väldigt ung"
+
+if character_age > 40:
+    character_age_approx = "väldigt gammal"
+
+if 10 < character_age < 40:
+    character_age_approx = "vuxen"
+
+for x in range(2):
+    the_robot_is_typing()
+
+print("Jag ska berätta en saga")
+
+
+for x in range(3):
+    the_robot_is_typing()
+
+print("Det var en gång en " + pronomes + " som hette " + character_name + ".")
+for x in range(1):
+    the_robot_is_typing()
+print(pronome  + " var " + character_age_approx )
+
+p2.join()
